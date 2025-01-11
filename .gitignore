@@ -1,0 +1,115 @@
+# Package manager directories and files
+node_modules/
+npm-debug.log
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.npm/
+.yarn/
+package-lock.json
+yarn.lock
+
+# IDE - Keep project settings, ignore workspace settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+.idea/*
+!.idea/codeStyles
+!.idea/inspectionProfiles
+!.idea/runConfigurations
+
+.cursor/*
+!.cursor/settings.json
+!.cursor/tasks.json
+!.cursor/launch.json
+!.cursor/extensions.json
+!.cursor/*.code-snippets
+
+# Editor files
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build and compilation artifacts
+dist/
+build/
+*.class
+*.o
+*.pyc
+__pycache__/
+*.so
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# Environment and secret files
+.env
+.env.local
+.env.*.local
+*.pem
+.envrc
+.direnv/
+
+# Testing and coverage
+coverage/
+.nyc_output/
+.pytest_cache/
+junit.xml
+
+# Temporary files
+tmp/
+temp/
+.temp/
+*.tmp
+
+# Documentation
+docs/_build/
+.docusaurus
+
+# Misc
+.cache/
+.history/
+.local/
+
+# Additional security-related patterns
+*token*
+*secret*
+*key*
+*.key
+*.pem
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# Prevent accidental inclusion of YADM files
+.config/yadm/encrypt.gpg
+
+# YADM-specific ignores
+.config/yadm/repo.git/
+.local/share/yadm/
+.yadm-project
+
+# Prevent accidental commit of decrypted files
+*.decrypted
+*~decrypt*

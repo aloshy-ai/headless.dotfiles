@@ -1,0 +1,69 @@
+.gh
+.gnupg/*
+.gradle/gradle.properties
+.m2/settings.xml
+.ssh/*
+.config/keybase/*
+bin/prowl
+
+.exercism.json
+.s/*
+.config/Yubico/
+.mrconfig
+bin/findFileContent
+bin/findfile
+bin/findFileCommits
+bin/uploadFileContent
+
+.config/fish/conf.d/github.fish
+.config/fish/conf.d/flow.fish
+.config/fish/conf.d/doodles.fish
+.config/fish/conf.d/civo.fish
+.config/fish/conf.d/evm.fish
+.config/fish/conf.d/find.fish
+.config/fish/conf.d/gieft.fish
+
+# Additional recommendations
+.npmrc
+.docker/config.json
+.aws/
+.kube/config
+.config/gcloud/
+.netrc
+.config/hub
+.config/git/credentials
+.terraform.d/credentials.tfrc.json
+.cargo/credentials
+
+# Shell histories and additional sensitive configs
+.bash_history
+.config/gh/hosts.yml
+.ssh/authorized_keys
+
+# Browser profiles that might contain tokens
+.config/chromium/
+.config/google-chrome/
+.mozilla/firefox/
+
+# Additional potential secret locations
+.config/rclone/
+.config/heroku/
+.config/op/
+.vault-token
+.config/stripe/
+.pgpass
+*history   # Catches zsh_history, mysql_history, etc.
+.lesshst
+.wget-hsts
+
+# Additional FAQ-recommended patterns
+.config/git/credentials
+.local/share/keyrings/*
+.password-store/
+.thunderbird/*.default/
+.gnome2/keyrings/*
+.kde/share/apps/kwallet/*
+.wine/drive_c/users/*/Application Data/
+*wallet*
+*auth*
+*pass*

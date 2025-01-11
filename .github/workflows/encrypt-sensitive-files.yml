@@ -1,0 +1,79 @@
+name: Encrypt Sensitive Files
+
+on:
+  push:
+    branches: 
+      - '**'
+  workflow_dispatch:
+
+jobs:
+  encrypt:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ github.token }}
+
+      - name: Install gpg
+        run: sudo apt-get install -y gpg
+
+      - name: Set up GPG key
+        env:
+          GPG_KEY: ${{ secrets.GPG_KEY }}
+        run: |
+          echo "$GPG_KEY" | gpg --import
+
+      - name: Create new branch without history
+        run: |
+          # Configure git
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          
+          # Create new orphan branch
+          git checkout --orphan temp_branch
+          
+          # Add all files
+          git add .
+          
+          # Create initial commit
+          git commit -m "Initial commit with encrypted files"
+
+      - name: Encrypt sensitive files
+        env:
+          GPG_EMAIL: ${{ secrets.GPG_EMAIL }}
+        run: |
+          sensitive_patterns=(
+            "**/*.key"
+            "**/*.pem"
+            "**/*.crt"
+            "**/*.sql"
+            "**/*.env*"
+            "**/*.log"
+            "**/.bash_history"
+            "**/.zsh_history"
+            "**/*.sqlite"
+            "**/*.json"
+            "**/.git-credentials"
+            "**/id_*"
+          )
+
+          for pattern in "${sensitive_patterns[@]}"; do
+            find . -type f -path "$pattern" -not -name "*.gpg" | while read -r file; do
+              echo "Encrypting $file..."
+              gpg --encrypt --recipient "${GPG_EMAIL}" --trust-model always "$file" || echo "Failed to encrypt $file"
+              rm -f "$file"
+            done
+          done
+
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          # Add encrypted files
+          git add .
+          git commit -m "Add encrypted files" || echo "No changes to commit"
+          
+          # Force push to remote
+          git push -f origin temp_branch:${{ github.ref_name }}

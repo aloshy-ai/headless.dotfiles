@@ -1,0 +1,12 @@
+[user]
+	name = aloshy.🅰🅸
+	email = noreply@aloshy.ai
+
+[core]
+	excludesfile = ~/.gitignore
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = false
